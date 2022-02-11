@@ -1,90 +1,19 @@
+
+A tiny curl wrapper in c++ 20
+
 How to build the project?
 1) mkdir build
 2) cd build
-3) cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-8
-===============================================================================
-
-Please check the stats for the usage of each dmatcher
-README_dmatcher_v1
-README_dmatcher_v2 more performant , & uses less memory
+3) cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-11 (in release)
+   cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=g++-11 (in Debug)
 
 Description of the project
 -------------------------------------------------------------------------
 bin: contains the matching engine & a tool that allows to split tsv data
-lib: contains all the static libraries
+lib: contains all the libraries
 nrtest: contains a set of unitary tests
 rc: resources
 include: API
 src: contains the sources
 
-The underlying idea
--------------------------------------------------------------------------
-dmatcher_v1: matching engine
-dmatcher_v2: matching engine (new mapping of data to match)
-
-corelb: implement basics threapool
-contextmgr: set context for computing
-file_divider: tool
-engine: allows to see if lines matches based on the specification
-parser: layer that implements the parsing of the data
-tools: all kind of need tool to mesure, acces filesystem
-
-history
--------------------------------------------------------------------------
-the project has been developped in the following order:
-
-1 parser
-2 tools
-3 engine + tools
-4 corelb
-5 contextmgr
-
-A) brute force approach
-no optimization, just trying to get to the gool and have a result
-to have the idea of what will take place at runtime
-
-B) optimization
-1)first optimization took place for the parser
-2)second optimization took place for setting of the data in order to call the matching engine
-3)state of art: based on what exist on the market and based on my resources
-4)third optimization start of multithreaded approch & 
-observe the multiple the bottlenecks at runtime.
-5)optimization of performance based on the types used at runtime
-6)optimization of memory based on new data mapping
-7)optimization of performance based on custom thread pool.(no any usage of concurrent data structure)
-
-C) future and final solution based on the time given
-the preemptive approach is a good one because of the existing resource on the test plateform( 2 hyperthreaded cores = 4 virtual cores)
-usage of streaming queue to distribute the request to the thread pool
-
-1 thread will distribute the data
-3 threads will perform the matching (the thread pool will most probably use a barrier and will be small (because of the test plateform))
-
-D) Conclusion 
-
-a) threadpool
-the approach with usage of threadpool is not effecient because of the lack of performance
-offerd by the blocking queue that are used.
-
-    a-1) custom blocking queue is not efficient at all
-    a-2) usage of concurrent_queue of tbb is good for performance but the resutl are not 
-         always stable
-
-b) usage of new mapping for matching peers & custom pseudo pool 
-the memory is still a problem but the approach is the right one.
-this approach allows to improve the usage of the memory.
-
-    b-1) my platform lacks memory
-    b-2) to diminish the usage of ram, force the usage of a cache on ssd(30 times faster than disk)
-    not on disk.->should use a pseudo cache 
-
-Improvement:
-=======================================================================================================================================
-Currently implementing a dmatcher_v3 that will allow to deal with 1/2 lines
-forces the dumping of memory frequently
-
-Ideas
--------------------------------------------------------------------------
-1) distribute the computing on a grid
-2) usage of cpu-gpu approach with cuda because the graphical card has a lot of cores
 
