@@ -1,19 +1,23 @@
 
 A tiny curl wrapper in c++ 20
 
-How to build the project?
-1) mkdir build
-2) cd build
-3) cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-11 (in release)
-   cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=g++-11 (in Debug)
+Dependencies
+-------------------------------------------------------------------------
+cmake 3.22.2
+boost 1.76
+libcurl4
 
 Description of the project
 -------------------------------------------------------------------------
-bin: contains the matching engine & a tool that allows to split tsv data
+bin: contains examples that uses the curl wrapper
 lib: contains all the libraries
 nrtest: contains a set of unitary tests
 rc: resources
 include: API
 src: contains the sources
 
-
+How to build the project?
+1) mkdir build
+2) cd build
+3) cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-11 (in release)
+   cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=g++-11 (in Debug)
