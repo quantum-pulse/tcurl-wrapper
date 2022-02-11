@@ -2,7 +2,10 @@ cmake_minimum_required(VERSION 3.22.2)
 project(t-curl-wrapper)
 
 set(CMAKE_CXX_STANDARD 20)
-set (CMAKE_CXX_FLAGS_INIT "-Wall -Wno-overflow -pendantic -std=c++20")
+set(CMAKE_CXX_FLAGS_INIT "-Wall -Wno-overflow -pendantic -std=c++20")
+
+set(CMAKE_INCLUDE_PATH ${CMAKE_SOURCE_DIR}/include)
+
 if( ${CMAKE_BUILD_TYPE} STREQUAL "Release")
     set (CMAKE_CXX_FLAGS_RELEASE_INIT "-Ofast")
 else()
@@ -21,4 +24,3 @@ file(GLOB SOURCES "src/*.cxx")
 
 enable_testing()
 add_subdirectory(src)
-
