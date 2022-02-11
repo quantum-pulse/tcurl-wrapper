@@ -13,4 +13,4 @@ target_include_directories(tc-wpr PUBLIC
   $<INSTALL_INTERFACE:include>
 )
 
-#add_subdirectory(test)
+add_subdirectory(test)

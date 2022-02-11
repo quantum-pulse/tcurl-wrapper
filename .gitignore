@@ -3,3 +3,4 @@
 *.swn
 lib/
 build/
+nrtest/
