@@ -1,6 +1,6 @@
 
-#ifndef CURL_MGR
-#define CURL_MGR
+#ifndef CURL_MGR_HXX
+#define CURL_MGR_HXX
 
 #include <string>
 #include <memory>
