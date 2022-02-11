@@ -13,7 +13,8 @@ public:
 
     std::string & operator()();
     std::string & rbuffer();
-    
+    int status();
+
 private:
 
     void fetch();

@@ -39,7 +39,11 @@ string & curl_mgr::operator()() {
 string & curl_mgr::rbuffer() { 
     return rbuf_;
 }
-    
+
+int curl_mgr::status() {
+    return cache_->res_;  
+}
+
 void curl_mgr::fetch() {
     if(cache_->curl_) {
         curl_easy_setopt(cache_->curl_, CURLOPT_URL,url_.c_str());
