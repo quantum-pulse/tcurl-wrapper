@@ -1,0 +1,24 @@
+cmake_minimum_required(VERSION 3.22.2)
+project(t-curl-wrapper)
+
+set(CMAKE_CXX_STANDARD 20)
+set (CMAKE_CXX_FLAGS_INIT "-Wall -Wno-overflow -pendantic -std=c++20")
+if( ${CMAKE_BUILD_TYPE} STREQUAL "Release")
+    set (CMAKE_CXX_FLAGS_RELEASE_INIT "-Ofast")
+else()
+    set (CMAKE_CXX_FLAGS_DEBUG_INIT "--stdlib=libstdc++")
+    set(CMAKE_CXX_FLAGS_RELEASE_INIT "-Og -DNDEBUG")
+endif()
+
+ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK)
+
+SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
+SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
+SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+SET(TEST_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/nrtest)
+
+file(GLOB SOURCES "src/*.cxx")
+
+enable_testing()
+add_subdirectory(src)
+
