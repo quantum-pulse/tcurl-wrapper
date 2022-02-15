@@ -3,7 +3,6 @@
 
 #define BOOST_TEST_MODULE test_curl_mgr3
 #include <boost/test/unit_test.hpp>
-#include <tools>
 using namespace std;
 
 /* usage of functor */

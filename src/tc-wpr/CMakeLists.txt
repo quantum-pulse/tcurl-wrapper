@@ -1,6 +1,4 @@
 
-message("CMAKE_INCLUDE_PATH=${CMAKE_INCLUDE_PATH}")
-
 add_library(tc-wpr SHARED 
   curl_mgr.cxx
 )

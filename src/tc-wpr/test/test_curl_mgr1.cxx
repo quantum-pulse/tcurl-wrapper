@@ -3,7 +3,6 @@
 
 #define BOOST_TEST_MODULE test_curl_mgr1
 #include <boost/test/unit_test.hpp>
-#include <tools>
 #include <memory>
 using namespace std;
 
