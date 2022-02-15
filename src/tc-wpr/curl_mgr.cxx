@@ -15,7 +15,7 @@ namespace{
 //start of cache implementation-------------------------------------------------------------
 struct curl_mgr::cache{
 
-    cache():curl_(curl_easy_init()) {}
+    cache():curl_(curl_easy_init()),res_(CURLE_FAILED_INIT) {}
     ~cache() {
         curl_easy_cleanup(curl_);
     } 
