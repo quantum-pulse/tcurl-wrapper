@@ -20,6 +20,21 @@ struct curl_mgr::cache{
         curl_easy_cleanup(curl_);
     } 
 
+    void manage_result(CURLcode & _code){
+        switch(_code){
+            case CURLE_FAILED_INIT:{
+                throw runtime_error("couldn't create curl object");
+            }
+            case CURLE_COULDNT_RESOLVE_HOST:{
+                throw runtime_error("url doesn't exist");
+            }
+            case CURLE_URL_MALFORMAT:{
+                throw runtime_error("url doesn't have a correct format");
+            }
+            case CURLE_OK:{break;}
+        }
+    }
+
     CURL * curl_;
     CURLcode res_;
 };
