@@ -1,4 +1,6 @@
 
+#include <netdb.h>
+
 #include "curl_mgr.hxx"
 #include <curl/curl.h>
 
@@ -34,7 +36,6 @@ struct curl_mgr::cache{
             case CURLE_OK:{break;}
         }
     }
-
     CURL * curl_;
     CURLcode res_;
 };
@@ -65,6 +66,11 @@ void curl_mgr::init() {
         cache_->res_ = CURLE_OK;
     }
     cache_->manage_result(cache_->res_);
+}
+
+bool curl_mgr::has_network() {
+   //hack to check if the internet is accesible from host
+   return (!gethostbyname("google.com"))?false:true;
 }
 
 void curl_mgr::extract() {

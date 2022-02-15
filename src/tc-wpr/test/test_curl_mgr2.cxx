@@ -19,9 +19,10 @@ BOOST_AUTO_TEST_CASE(test_curl_mgr_extract1)
         BOOST_CHECK_EQUAL(l_msg,"network is down");
     }
 
-    auto l_status=l_mgr.status();
-    BOOST_CHECK_EQUAL(l_status,0);
-    auto size_buffer=l_mgr.rbuffer().size();
-    BOOST_CHECK_EQUAL(size_buffer,45598);
-
+    if(l_mgr.has_network()){
+        auto l_status=l_mgr.status();
+        BOOST_CHECK_EQUAL(l_status,0);
+        auto size_buffer=l_mgr.rbuffer().size();
+        BOOST_CHECK_EQUAL(size_buffer,45598);
+    }
 }

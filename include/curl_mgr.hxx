@@ -13,6 +13,7 @@ public:
 
     std::string & operator()();
 
+    bool has_network();
     void extract();
     std::string & rbuffer();
     int status();
@@ -20,7 +21,6 @@ public:
 private:
 
     void init();
-
     std::string url_;
     std::string rbuf_;
   

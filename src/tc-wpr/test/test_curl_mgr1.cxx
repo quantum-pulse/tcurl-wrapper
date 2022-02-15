@@ -22,3 +22,22 @@ BOOST_AUTO_TEST_CASE(test_curl_mgr_init)
 
     if(l_mgr) BOOST_CHECK_EQUAL(l_mgr->status(),0);
 }
+
+BOOST_AUTO_TEST_CASE(test_curl_mgr_has_network)
+{
+    string url="https://llvm.org/docs/CommandGuide/llvm-cov.html";
+    unique_ptr<curl_mgr> l_mgr=nullptr;
+    try{
+        l_mgr=make_unique<curl_mgr>(url);
+    }
+    catch(runtime_error & re){
+        auto l_msg=re.what();
+    }
+
+    if(!l_mgr->has_network()){
+        BOOST_CHECK_EQUAL(l_mgr->has_network(),false);
+    }
+    else{
+        BOOST_CHECK_EQUAL(l_mgr->has_network(),true);
+    }
+}
