@@ -17,7 +17,7 @@ public:
 
 private:
 
-    void fetch();
+    void extract();
 
     std::string url_;
     std::string rbuf_;

@@ -26,7 +26,7 @@ struct curl_mgr::cache{
 //end of cache implementation---------------------------------------------------------------
 
 curl_mgr::curl_mgr(const std::string & url):url_(url),cache_(make_unique<cache>()) { 
-    fetch();
+    extract();
 }
 
 curl_mgr::~curl_mgr() {
@@ -44,7 +44,7 @@ int curl_mgr::status() {
     return cache_->res_;  
 }
 
-void curl_mgr::fetch() {
+void curl_mgr::extract() {
     if(cache_->curl_) {
         curl_easy_setopt(cache_->curl_, CURLOPT_URL,url_.c_str());
         curl_easy_setopt(cache_->curl_, CURLOPT_WRITEFUNCTION, ::WriteCallback);
