@@ -26,7 +26,7 @@ struct curl_mgr::cache{
                 throw runtime_error("couldn't create curl object");
             }
             case CURLE_COULDNT_RESOLVE_HOST:{
-                throw runtime_error("url doesn't exist");
+                throw runtime_error("network is down");
             }
             case CURLE_URL_MALFORMAT:{
                 throw runtime_error("url doesn't have a correct format");
@@ -59,10 +59,10 @@ int curl_mgr::status() {
     return cache_->res_;  
 }
 
-void curl_mgr::init(){
+void curl_mgr::init() {
     if(cache_->curl_) {
         curl_easy_setopt(cache_->curl_, CURLOPT_URL,url_.c_str());
-        cache_->res_ = curl_easy_perform(cache_->curl_);
+        cache_->res_ = CURLE_OK;
     }
     cache_->manage_result(cache_->res_);
 }
