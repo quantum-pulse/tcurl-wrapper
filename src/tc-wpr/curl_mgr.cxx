@@ -64,6 +64,7 @@ void curl_mgr::init(){
         curl_easy_setopt(cache_->curl_, CURLOPT_URL,url_.c_str());
         cache_->res_ = curl_easy_perform(cache_->curl_);
     }
+    cache_->manage_result(cache_->res_);
 }
 
 void curl_mgr::extract() {
@@ -72,4 +73,5 @@ void curl_mgr::extract() {
         curl_easy_setopt(cache_->curl_, CURLOPT_WRITEDATA, &rbuf_);
         cache_->res_ = curl_easy_perform(cache_->curl_);
     }
+    cache_->manage_result(cache_->res_);
 }
