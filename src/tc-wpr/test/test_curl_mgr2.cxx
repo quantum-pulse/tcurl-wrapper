@@ -11,6 +11,7 @@ BOOST_AUTO_TEST_CASE(test_curl_mgr_rbuffer1)
 {
     string url="https://llvm.org/docs/CommandGuide/llvm-cov.html"; 
     curl_mgr l_mgr(url);
+    l_mgr.extract();
     auto l_status=l_mgr.status();
     BOOST_CHECK_EQUAL(l_status,0);
     auto size_buffer=l_mgr.rbuffer().size();

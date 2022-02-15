@@ -12,12 +12,14 @@ public:
     ~curl_mgr();
 
     std::string & operator()();
+
+    void extract();
     std::string & rbuffer();
     int status();
 
 private:
 
-    void extract();
+    void init();
 
     std::string url_;
     std::string rbuf_;
