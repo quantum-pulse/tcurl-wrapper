@@ -7,7 +7,7 @@ set(CMAKE_CXX_FLAGS_INIT "-Wall -Wno-overflow -pendantic -std=c++20")
 set(CMAKE_INCLUDE_PATH ${CMAKE_SOURCE_DIR}/include)
 
 if( ${CMAKE_BUILD_TYPE} STREQUAL "Release")
-    set (CMAKE_CXX_FLAGS_RELEASE_INIT "-Ofast")
+    set (CMAKE_CXX_FLAGS_RELEASE_INIT "-O3")
 else()
     set (CMAKE_CXX_FLAGS_DEBUG_INIT "--stdlib=libstdc++")
     set(CMAKE_CXX_FLAGS_RELEASE_INIT "-Og -DNDEBUG")
